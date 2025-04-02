@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交通标志识别系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        .upload-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .upload-box {
+            border: 2px dashed #3498db;
+            border-radius: 5px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            background-color: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .upload-box:hover {
+            border-color: #2980b9;
+            background-color: #e8f4fc;
+        }
+        .btn-upload {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 25px;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        .btn-upload:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        .error-message {
+            color: #e74c3c;
+            margin: 10px 0;
+        }
+        .features {
+            margin-top: 40px;
+        }
+        .feature-icon {
+            font-size: 40px;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header text-center">
+        <h1>交通标志识别系统</h1>
+        <p class="lead">基于深度学习的交通标志自动识别平台</p>
+    </div>
+
+    <div class="container">
+        <div class="upload-container">
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+
+            <h2 class="text-center mb-4">上传交通标志图片</h2>
+
+            <form method="post" enctype="multipart/form-data" id="uploadForm">
+                <div class="upload-box" onclick="document.getElementById('fileInput').click()">
+                    <i class="bi bi-cloud-arrow-up feature-icon"></i>
+                    <p class="lead">点击或拖拽文件到此处</p>
+                    <p class="text-muted">支持PNG, JPG, JPEG格式，最大2MB</p>
+                </div>
+                <input type="file" name="file" id="fileInput" accept="image/*" style="display: none;" required>
+
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-upload">
+                        <i class="bi bi-upload"></i> 上传并识别
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="features row mt-5">
+            <div class="col-md-4 text-center">
+                <i class="bi bi-speedometer2 feature-icon"></i>
+                <h3>快速识别</h3>
+                <p>基于优化的CNN模型，识别速度小于5秒</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="bi bi-check-circle feature-icon"></i>
+                <h3>高准确率</h3>
+                <p>在GTSRB数据集上准确率超过93%</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="bi bi-list-check feature-icon"></i>
+                <h3>43类标志</h3>
+                <p>支持识别43种常见交通标志</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center mt-5 p-4 text-muted">
+        <p>滇西应用技术大学测绘与信息工程学院 - 基于深度学习的交通标志识别系统</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 处理拖拽上传
+        const uploadBox = document.querySelector('.upload-box');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadBox.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadBox.style.borderColor = '#2980b9';
+            uploadBox.style.backgroundColor = '#e8f4fc';
+        });
+
+        uploadBox.addEventListener('dragleave', () => {
+            uploadBox.style.borderColor = '#3498db';
+            uploadBox.style.backgroundColor = '#f8f9fa';
+        });
+
+        uploadBox.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadBox.style.borderColor = '#3498db';
+            uploadBox.style.backgroundColor = '#f8f9fa';
+
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+            }
+        });
+    </script>
+</body>
+</html>

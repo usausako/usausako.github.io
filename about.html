@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于 - 交通标志识别系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            font-size: 40px;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        .btn-back {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 25px;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        .btn-back:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="header text-center">
+        <h1>关于交通标志识别系统</h1>
+        <p class="lead">基于深度学习的识别技术</p>
+    </div>
+
+    <div class="container">
+        <div class="about-container">
+            <h2 class="text-center mb-4">系统介绍</h2>
+
+            <p>本系统是基于深度学习的交通标志识别平台，采用改进的卷积神经网络(CNN)架构，能够准确识别43类常见交通标志。</p>
+
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <h3><i class="bi bi-gear feature-icon"></i> 技术特点</h3>
+                    <ul>
+                        <li>使用改进的LeNet-5 CNN架构</li>
+                        <li>加入BatchNormalization和Dropout层</li>
+                        <li>采用数据增强技术</li>
+                        <li>在GTSRB数据集上训练</li>
+                        <li>测试准确率超过93%</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3><i class="bi bi-check-circle feature-icon"></i> 系统功能</h3>
+                    <ul>
+                        <li>支持单张图片上传识别</li>
+                        <li>显示识别结果和置信度</li>
+                        <li>响应式Web界面</li>
+                        <li>支持拖拽上传</li>
+                        <li>详细的错误处理</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="{{ url_for('upload_file') }}" class="btn btn-back">
+                    <i class="bi bi-arrow-left"></i> 返回首页
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center mt-5 p-4 text-muted">
+        <p>滇西应用技术大学测绘与信息工程学院 - 基于深度学习的交通标志识别系统</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
